@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Marco's Doktorarbeits-Countdown</title>
+  <title>Marcos Doktorarbeits-Countdown</title>
 
   <style>
     @font-face {
@@ -24,6 +24,11 @@
     }
 
     .container {
+      font-size: 3.8rem;
+      margin-bottom: 36px;
+      letter-spacing: 0.08em;
+      line-height: 1.25;
+      color: #3e5c3e;
       position: relative; /* wichtig für den Hut */
       background: linear-gradient(
         180deg,
@@ -43,23 +48,26 @@
     .container::after {
       content: "🎓";
       position: absolute;
-      top: -36px;
+      top: -42px;
       right: -26px;
       font-size: 4.9rem;
       transform: rotate(12deg);
       filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.25));
       pointer-events: none;
-    }
-
-    h1 {
-      font-size: 3.1rem;
-      margin-bottom: 36px;
-      letter-spacing: 0.07em;
       color: #3e5c3e;
     }
 
-    h1::first-letter {
+    h1 {
       font-size: 3.8rem;
+      margin-bottom: 36px;
+      letter-spacing: 0.08em;
+      line-height: 1.25;
+      color: #3e5c3e;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    h1::first-letter {
+      font-size: 4.5rem;
     }
 
     #countdown {
@@ -76,24 +84,52 @@
       margin-top: 26px;
       font-size: 1.25rem;
       letter-spacing: 0.08em;
-      color: #4a5f4a;
+      color: #3e5c3e;
     }
 
     .label::first-letter {
       font-size: 1.6rem;
     }
+
+    .divider {
+      width: 60%;
+      height: 1px;
+      margin: 28px auto 36px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(80, 120, 80, 0.5),
+        transparent
+      );
+    }
+    #celebration-image {
+      display: none;
+      margin: 30px auto 0 auto; 
+      margin-top: 20px;
+      max-width: 25%;
+      height: auto;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Marcos <br> 
-        Doktorarbeits-Countdown</h1>
+    <div id="title">Marcos <br> Doktorarbeits-Countdown</div>
+    <div id="divider" class="divider"></div>
     <div id="countdown">Lade Countdown…</div>
-    <div class="label"></div>
+    <div id="label" class="label">✨ Fast geschafft ✨</div>
+
+    <img
+      id="celebration-image"
+      src="image.png"
+      alt="Feierbild"
+    />
   </div>
+  
 
   <script>
-    const targetDate = new Date("2026-01-19T12:00:00");
+    const targetDate = new Date("2026-01-16T22:11:00");
 
     function updateCountdown() {
       const now = new Date();
@@ -101,7 +137,19 @@
 
       if (diff <= 0) {
         document.getElementById("countdown").innerText =
-          "🎉 Geschafft! Herzlichen Glückwunsch 💐";
+          "🎉 Geschafft! \n Herzlichen Glückwunsch 💐";
+        countdown.style.whiteSpace = "pre-line";
+
+        // Alles ausblenden
+        document.getElementById("title").style.display = "none";
+        document.getElementById("divider").style.display = "none";
+        document.getElementById("label").style.display = "none";
+
+        // Bild einblenden
+        const img = document.getElementById("celebration-image");
+        img.style.display = "block";
+        setTimeout(() => img.style.opacity = "1", 50);
+
         return;
       }
 
