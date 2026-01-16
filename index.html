@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Marco's Doktorarbeits-Countdown</title>
+
+  <style>
+    @font-face {
+      font-family: 'Arastin';
+      src: url('Arastin-Pro.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      font-family: 'Arastin', serif;
+      background: linear-gradient(135deg, #87a680, #87a680);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #2f3f2f;
+    }
+
+    .container {
+      position: relative; /* wichtig für den Hut */
+      background: linear-gradient(
+        180deg,
+        #f1f6f1 0%,
+        #e6f0e6 100%
+      );
+      padding: 72px 80px;
+      border-radius: 24px;
+      box-shadow:
+        0 28px 56px rgba(0, 0, 0, 0.18),
+        0 0 0 1px rgba(120, 150, 120, 0.3);
+      text-align: center;
+      min-width: 460px;
+    }
+
+    /* 🎓 Doktorhut */
+    .container::after {
+      content: "🎓";
+      position: absolute;
+      top: -36px;
+      right: -26px;
+      font-size: 4.9rem;
+      transform: rotate(12deg);
+      filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.25));
+      pointer-events: none;
+    }
+
+    h1 {
+      font-size: 3.1rem;
+      margin-bottom: 36px;
+      letter-spacing: 0.07em;
+      color: #3a4a34;
+    }
+
+    h1::first-letter {
+      font-size: 3.8rem;
+    }
+
+    #countdown {
+      font-size: 3.9rem;
+      letter-spacing: 0.11em;
+      color: #243524;
+    }
+
+    #countdown::first-letter {
+      font-size: 4.6rem;
+    }
+
+    .label {
+      margin-top: 26px;
+      font-size: 1.25rem;
+      letter-spacing: 0.08em;
+      color: #4a5f4a;
+    }
+
+    .label::first-letter {
+      font-size: 1.6rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Marcos <br> 
+        Doktorarbeits-Countdown</h1>
+    <div id="countdown">Lade Countdown…</div>
+    <div class="label"></div>
+  </div>
+
+  <script>
+    const targetDate = new Date("2026-01-19T12:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerText =
+          "🎉 Geschafft! Herzlichen Glückwunsch 💐";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("countdown").innerText =
+        `${days}d  ${hours}h  ${minutes}m  ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
