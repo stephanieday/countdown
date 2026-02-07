@@ -88,7 +88,14 @@
         transparent
       );
     }
-    
+
+    /* On phones: show left side of image (the woman) */
+    @media (max-width: 768px) {
+      body {
+        background-position: left center;
+        background-size: cover;
+      }
+    }
   </style>
 </head>
 <body>
