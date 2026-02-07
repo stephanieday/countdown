@@ -2,134 +2,102 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Marcos Doktorarbeits-Countdown</title>
-
+  <title>RAYE Concert</title>
   <style>
     @font-face {
-      font-family: 'Arastin';
-      src: url('Arastin-Pro.ttf') format('truetype');
+      font-family: 'IvyJournal';
+      src: url('IvyJournal.otf') format('opentype'),
+           url('IvyJournal.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
 
     body {
-      font-family: 'Arastin', serif;
-      background: linear-gradient(135deg, #87a680, #87a680);
+      font-family: 'IvyJournal', serif;
+      background: url('this_music_may_contain_hope.jpg') center center / cover no-repeat;
       height: 100vh;
       margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #2f3f2f;
+      position: relative;
+      color: #fff;
     }
 
     .container {
-      font-size: 3.8rem;
-      margin-bottom: 36px;
-      letter-spacing: 0.08em;
-      line-height: 1.25;
-      color: #3e5c3e;
-      position: relative; /* wichtig für den Hut */
+      position: absolute;
+      top: 2px;
+      right: 5%;
+      font-family: 'IvyJournal', serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      color: #fff;
       background: linear-gradient(
         180deg,
-        #f1f6f1 0%,
-        #e6f0e6 100%
+        #8caef9 10%,
+        #8caef9 90%
       );
-      padding: 72px 80px;
-      border-radius: 24px;
+      width: 260px;
+      min-height: 260px;
+      padding: 28px;
+      border-radius: 12px;
       box-shadow:
-        0 28px 56px rgba(0, 0, 0, 0.18),
-        0 0 0 1px rgba(120, 150, 120, 0.3);
+        0 24px 48px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(0, 0, 0, 0.06);
       text-align: center;
-      min-width: 460px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
     }
 
-    /* 🎓 Doktorhut */
-    .container::after {
-      content: "🎓";
-      position: absolute;
-      top: -42px;
-      right: -26px;
-      font-size: 4.9rem;
-      transform: rotate(12deg);
-      filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.25));
-      pointer-events: none;
-      color: #3e5c3e;
-    }
-
-    h1 {
-      font-size: 3.8rem;
-      margin-bottom: 36px;
-      letter-spacing: 0.08em;
-      line-height: 1.25;
-      color: #3e5c3e;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
-    }
-
-    h1::first-letter {
-      font-size: 4.5rem;
+    #title {
+      font-size: 2.2rem;
+      margin: 0;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
     }
 
     #countdown {
-      font-size: 3.9rem;
-      letter-spacing: 0.11em;
-      color: #3e5c3e;
-    }
-
-    #countdown::first-letter {
-      font-size: 4.6rem;
+      font-size: 2.1rem;
+      letter-spacing: 0.06em;
+      margin: 15px 0 0;
+      color: #fff;
     }
 
     .label {
-      margin-top: 26px;
-      font-size: 1.25rem;
-      letter-spacing: 0.08em;
-      color: #3e5c3e;
-    }
-
-    .label::first-letter {
-      font-size: 1.6rem;
+      margin-top: 12px;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
     }
 
     .divider {
       width: 60%;
       height: 1px;
-      margin: 28px auto 36px;
+      margin: 20px 0;
       background: linear-gradient(
         to right,
         transparent,
-        rgba(80, 120, 80, 0.5),
+        rgba(255, 255, 255, 0.5),
         transparent
       );
     }
-    #celebration-image {
-      display: none;
-      margin: 30px auto 0 auto; 
-      margin-top: 20px;
-      max-width: 25%;
-      height: auto;
-      opacity: 0;
-      transition: opacity 0.7s ease;
-    }
+    
   </style>
 </head>
 <body>
   <div class="container">
-    <div id="title">Marcos <br> Doktorarbeits-Countdown</div>
+    <div id="title">RAYE</div>
+    <div id="label" class="label">THIS CONCERT MAY CONTAIN FUN</div>
     <div id="divider" class="divider"></div>
     <div id="countdown">Lade Countdown…</div>
-    <div id="label" class="label">✨ Fast geschafft ✨</div>
-
-    <img
-      id="celebration-image"
-      src="image.png"
-      alt="Feierbild"
-    />
   </div>
   
 
   <script>
-    const targetDate = new Date("2026-01-19T12:00:00");
+    const targetDate = new Date("2026-02-07T02:05:00");
 
     function updateCountdown() {
       const now = new Date();
@@ -137,18 +105,11 @@
 
       if (diff <= 0) {
         document.getElementById("countdown").innerText =
-          "🎉 Geschafft! \n Herzlichen Glückwunsch 💐";
-        countdown.style.whiteSpace = "pre-line";
+          "Los geeeeht's 😍";
+        document.getElementById("countdown").style.whiteSpace = "pre-line";
 
         // Alles ausblenden
-        document.getElementById("title").style.display = "none";
         document.getElementById("divider").style.display = "none";
-        document.getElementById("label").style.display = "none";
-
-        // Bild einblenden
-        const img = document.getElementById("celebration-image");
-        img.style.display = "block";
-        setTimeout(() => img.style.opacity = "1", 50);
 
         return;
       }
